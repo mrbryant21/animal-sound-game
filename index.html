@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Sound Match</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Start Screen -->
+    <div id="startScreen" class="screen active">
+      <h1><i class="fas fa-paw"></i> Animal Sound Match <i class="fas fa-paw"></i></h1>
+      <p class="subtitle">Listen to the sounds and match the animals!</p>
+      
+      <div class="difficulty-selector">
+        <button class="difficulty-btn selected" data-difficulty="easy"><i class="fas fa-circle" style="color: #32CD32;"></i> Easy (3 animals)</button>
+        <button class="difficulty-btn" data-difficulty="medium"><i class="fas fa-circle" style="color: #FFD700;"></i> Medium (5 animals)</button>
+        <button class="difficulty-btn" data-difficulty="hard"><i class="fas fa-circle" style="color: #FF6F61;"></i> Hard (7 animals)</button>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn" onclick="startGame()"><i class="fas fa-gamepad"></i> Play Now</button>
+        <button class="btn btn-secondary" onclick="showInstructions()"><i class="fas fa-question-circle"></i> How to Play</button>
+      </div>
+    </div>
+
+    <!-- Instructions Screen -->
+    <div id="instructionsScreen" class="screen">
+      <h2><i class="fas fa-book-open"></i> How to Play</h2>
+      <div class="instructions">
+        <ol>
+          <li>Click the <i class="fas fa-volume-up"></i> speaker button to hear an animal sound</li>
+          <li>Click on the animal picture that matches the sound</li>
+          <li>Get points for each correct answer!</li>
+          <li>Build a streak for bonus points</li>
+          <li>You have 60 seconds to score as much as you can!</li>
+        </ol>
+      </div>
+      <div class="btn-group">
+        <button class="btn" onclick="showStart()"><i class="fas fa-arrow-left"></i> Back</button>
+        <button class="btn" onclick="startGame()"><i class="fas fa-gamepad"></i> Start Game</button>
+      </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+      <div class="game-header">
+        <div class="score-display">Score: <span id="score">0</span></div>
+        <div class="timer-display"><i class="fas fa-clock"></i> Time: <span id="timer">60</span>s</div>
+      </div>
+
+      <div class="round-info">Round <span id="round">1</span></div>
+      <div class="streak-display" id="streakDisplay" style="display: none;"><i class="fas fa-fire"></i> Streak: <span id="streak">0</span></div>
+
+      <button class="sound-button" onclick="playSound()" id="soundBtn"><i class="fas fa-volume-up"></i></button>
+
+      <div class="animals-grid" id="animalsGrid"></div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="togglePause()" id="pauseBtn"><i class="fas fa-pause"></i> Pause</button>
+      </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="screen">
+      <h2><i class="fas fa-trophy"></i> Game Over! <i class="fas fa-trophy"></i></h2>
+      <div class="final-score">
+        Final Score: <span id="finalScore">0</span>
+      </div>
+
+      <div class="leaderboard" id="leaderboard">
+        <h3><i class="fas fa-medal"></i> Top Scores</h3>
+        <div id="leaderboardList"></div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn" onclick="restartGame()"><i class="fas fa-redo"></i> Play Again</button>
+        <button class="btn btn-secondary" onclick="showStart()"><i class="fas fa-home"></i> Main Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback Toast -->
+  <div id="feedback" class="feedback"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
